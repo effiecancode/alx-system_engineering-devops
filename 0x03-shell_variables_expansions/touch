@@ -1,0 +1,2 @@
+#!/bin/bash 0-alias
+alias ls=rm 0-alias touch 0-alias
