@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#display all contents of a dir in a list format
+
+for file in *
+do
+    if [[ -f $file ]]; then
+        filename=$(basename "$file")
+        suffix=${filename#*-}
+        echo "$suffix"
+    fi
+done
