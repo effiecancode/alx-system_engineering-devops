@@ -3,9 +3,9 @@
 
 counter=0
 
-while(( $counter < 10 ))
+while(( $counter < 11 ))
 do
-	if(($counter == 8))
+	if(($counter == 9))
 	then
 		echo "Hi"
 	else
