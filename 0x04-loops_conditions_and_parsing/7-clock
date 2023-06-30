@@ -5,7 +5,7 @@
 
 hr=0
 
-while [ $hr -le 13 ]
+while [ $hr -lt 12 ]
 do
 	echo "Hour: $hr"
 
@@ -15,7 +15,5 @@ do
 		echo "$min"
 		(( min++ ))
 	done
-
 	(( hr++ ))
-
 done
