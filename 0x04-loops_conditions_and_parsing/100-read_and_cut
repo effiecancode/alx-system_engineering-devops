@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+#display username, user id and home directory for user
+
+while read -r line; do
+    echo "$line" | cut -d':' -f1,3,6
+done </etc/passwd
