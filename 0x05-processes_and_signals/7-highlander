@@ -3,13 +3,12 @@
 
 handle_sigterm(){
 	echo "I am invincible!"
-	echo 0
 }
 #register the sigterm signal handler
 
-trap handle_sigterm SIGTERM
+trap handle_sigterm
 
-#loop indefinitely
+#print the message to infinity
 while true
 do
 	echo "To infinity and beyond"
