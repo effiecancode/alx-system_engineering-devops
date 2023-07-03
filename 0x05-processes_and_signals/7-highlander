@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 #Bash script to handle the sigterm signal
-
 #register the sigterm signal handler
-trap echo "I am invincible!" 15
-
-
 #print the message to infinity
+
+trap "echo "I am invincible!!!"" 15
 while true;
 do
-	echo "To infinity and beyond"
+	echo "To infinity and beyond";
 	sleep 2
 done
