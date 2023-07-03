@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
 # kills the infinity and beyond  program using sigkill signal
 
-pkill -15 -f "bash ./4-to_infinity_and_beyond" -f
+
+# -f: Matches the process using the full command line.
+
+# pkill cmd searches for processes matching the
+# command line  "bash ./4-to_infinity_and_beyond"
+# and sends a termination signal to those processes.
+
+pkill -f 4-to_infinity_and_beyond
