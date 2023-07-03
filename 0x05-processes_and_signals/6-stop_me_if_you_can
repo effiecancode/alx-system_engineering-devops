@@ -1,13 +1,9 @@
 #!/usr/bin/env bash
 # Bash script that stops 4-to_infinity_and_beyond process.
-
-
 # -f: Matches the process using the full command line.
-
 # pkill cmd searches for processes matching the
 # command line  "bash ./4-to_infinity_and_beyond"
 # and sends a termination signal to those processes.
-
 #pkill -f 4-to_infinity_and_beyond
 
 pid=$(pgrep -f "4-to_infinity_and_beyond")
