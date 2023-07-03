@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# kills the infinity and beyond  program using sigkill signal
+# Bash script that stops 4-to_infinity_and_beyond process.
 
 
 # -f: Matches the process using the full command line.
@@ -8,4 +8,11 @@
 # command line  "bash ./4-to_infinity_and_beyond"
 # and sends a termination signal to those processes.
 
-pkill -f 4-to_infinity_and_beyond
+#pkill -f 4-to_infinity_and_beyond
+
+pid=$(pgrep -f "4-to_infinity_and_beyond")
+
+while [[ -n "$pid" ]]
+do
+	pkill -TERM "$pid"
+done
