@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#Bash script to handle the sigterm signal
+
+# Find the process ID (PID) of the "highlander" process
+pid=$(pgrep -f "7-highlander")
+
+if [[ -n "$pid" ]]; then
+# Send a termination signal to the "highlander" process using kill command
+	kill -TERM "$pid"
+else
+	echo "Highlander process not found."
+fi
