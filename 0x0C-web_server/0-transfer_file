@@ -15,3 +15,13 @@ PATH_TO_SSH_KEY="$4"
 # Transfer file using scp
 scp -o StrictHostKeyChecking=no -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
 # echo "File transferred successfuly"
+
+# scp: This is the command for secure copy, which is used to transfer
+# files between a local and a remote host.
+# -o StrictHostKeyChecking=no: This option disables strict host key
+# checking. When you connect to a remote host for the first time,
+# SSH typically asks for confirmation to add the remote host's
+# key to your known_hosts file. Disabling strict host key checking
+# (StrictHostKeyChecking=no) can be useful in automation scripts,
+# but keep in mind that it reduces security since it ignores potential
+# man-in-the-middle attacks.
