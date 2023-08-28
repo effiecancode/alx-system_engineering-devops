@@ -6,7 +6,7 @@
 sudo apt-get update
 
 #install Nginx
-sudo apt-get install -y nginx
+sudo apt-get -y  install nginx
 
 #configure Nginx to listen to port 80
 #print hello world!
