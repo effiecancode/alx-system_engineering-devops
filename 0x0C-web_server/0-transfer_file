@@ -1,0 +1,17 @@
+#!/bin/env bash
+# Check if the number of parameters is less than 3
+
+if [ $# -lt 4]; then
+    echo "Usage: $0 PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1
+fi
+
+#Extract parameters
+PATH_TO_FILE="$1"
+IP="$2"
+USERNAME="$3"
+PATH_TO_SSH_KEY="$4"
+
+# Transfer file using scp
+scp -o StrictHostKeyChecking=no -i "$PATH_TO_SSH_KEY" "$PATH_TO_FILE" "$USERNAME@$IP:~/"
+# echo "File transferred successfuly"
