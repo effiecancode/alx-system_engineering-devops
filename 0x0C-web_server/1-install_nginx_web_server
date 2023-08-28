@@ -6,7 +6,7 @@
 sudo apt-get -y update
 
 #install Nginx
-sudo apt-get -y  install nginx
+sudo apt-get -y install nginx
 
 #allow http traffic through the firewall
 ufw allow 'Nginx HTTP'
@@ -15,5 +15,4 @@ ufw allow 'Nginx HTTP'
 echo 'Hello World!' > /var/www/html/index.html
 
 #start nginx(without systemctl)
-#systemctl start nginx
 service nginx start
