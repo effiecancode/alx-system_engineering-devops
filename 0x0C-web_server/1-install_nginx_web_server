@@ -14,5 +14,5 @@ sudo apt-get -y  install nginx
 echo 'Hello World!' > /var/www/html/index.html
 
 #restart nginx(without systemctl)
-service nginx restart
+service nginx start
 
