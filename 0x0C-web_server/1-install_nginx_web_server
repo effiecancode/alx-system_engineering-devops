@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# installs nginx and configure it to listen on port 80
+# print "Hello World"
 
 #update the package installer
 sudo apt update
@@ -14,7 +16,7 @@ sudo bash -c "echo server {
     location \ {
         echo -e \"HTTP/1.1 200 OK\\r\\n\\r\\Hello World!\";
     }
-}" > /etc/nginx/sites-available/default
+}" > /var/www/html/index.html
 
 #test nginx config
 sudo nginx -t
