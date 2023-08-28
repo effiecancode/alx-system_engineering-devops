@@ -2,17 +2,7 @@
 # installs nginx and configure it to listen on port 80
 # print "Hello World"
 
-#update the package installer
-sudo apt-get -y update
-
-#install Nginx
+sudo apt-get update
 sudo apt-get -y install nginx
-
-#allow http traffic through the firewall
-ufw allow 'Nginx HTTP'
-
-#configure nginx default page, print hello world!
 echo 'Hello World!' > /var/www/html/index.html
-
-#start nginx(without systemctl)
 service nginx start
