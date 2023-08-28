@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+#update the package installer
+sudo apt update
+
+#install Nginx
+sudo apt install -y nginx
+
+#configure Nginx to listen to port 80
+sudo bash -c "echo server {
+    listen 80;
+    server_name web_01;
+
+    location \ {
+        echo -e \"HTTP/1.1 200 OK\\r\\n\\r\\Hello World!\";
+    }
+}" > /etc/nginx/sites-available/default
+
+#test nginx config
+sudo nginx -t
+
+#restart nginx(without systemctl)
+sudo /etc/innit.d/nginx restart
+
