@@ -9,14 +9,16 @@ sudo apt update
 sudo apt install -y nginx
 
 #configure Nginx to listen to port 80
-sudo bash -c "echo server {
-    listen 80;
-    server_name web_01;
+# sudo bash -c "echo server {
+#     listen 80;
+#     server_name web_01;
 
-    location \ {
-        echo -e \"HTTP/1.1 200 OK\\r\\n\\r\\Hello World!\";
-    }
-}" > /var/www/html/index.html
+#     location \ {
+#         echo -e \"HTTP/1.1 200 OK\\r\\n\\r\\Hello World!\";
+#     }
+# }" > /var/www/html/index.html
+
+echo 'Hello World!' > /var/www/html/index.html
 
 #test nginx config
 sudo nginx -t
