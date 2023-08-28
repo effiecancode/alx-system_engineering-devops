@@ -3,17 +3,6 @@
 # print "Hello World"
 
 #update the package installer
-sudo apt-get update
-
-#install Nginx
-sudo apt-get -y  install nginx
-
-#configure Nginx to listen to port 80
-#!/usr/bin/env bash
-# installs nginx and configure it to listen on port 80
-# print "Hello World"
-
-#update the package installer
 sudo apt-get -y update
 
 #install Nginx
@@ -25,6 +14,6 @@ ufw allow 'Nginx HTTP'
 #configure nginx default page, print hello world!
 echo 'Hello World!' > /var/www/html/index.html
 
-#restart nginx(without systemctl)
+#start nginx(without systemctl)
 #systemctl start nginx
 service nginx start
