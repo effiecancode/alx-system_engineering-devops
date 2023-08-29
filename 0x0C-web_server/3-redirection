@@ -4,6 +4,6 @@
 sudo apt update
 sudo apt install -y nginx
 sudo ufw allow 'Nginx HTTP'
-echo "Hello World" > /var/www/html/index.html
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.github.com/ permanent;' /etc/nginx/sites-available/default
+echo "Hello World" | sudo tee /var/www/html/index
+sudo sed -i "53s/.*/location \/redirect_me {\n\treturn 301 http:\/\/github.com\/\;\n}/" /etc/nginx/sites-available/default
 sudo service nginx restart
