@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Install nginx on your web-01 server
+# installs nginx server
 
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo 'Hello World!' | sudo tee /var/www/html/index.nginx-debian.html
+sudo apt update
+sudo apt install -y nginx
+echo "Hello World" > /var/www/html/index.html
 sudo sed -i "53s/.*/location \/redirect_me {\n\treturn 301 http:\/\/github.com\/\;\n}/" /etc/nginx/sites-available/default
 sudo service nginx restart
