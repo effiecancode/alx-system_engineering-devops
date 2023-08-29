@@ -11,8 +11,14 @@ sudo apt-get -y install nginx
 #allow http traffic through the firewall
 ufw allow 'Nginx HTTP'
 
-#configure nginx default page, print hello world!
-echo 'Hello World!' > /var/www/html/index.html
+# Create default nginx folder for pages
+sudo mkdir -p /var/www/html
 
-#start nginx
+# Change ownership of file and directories to the current user
+sudo chown -R "$USER":"$USER" /var/www/html/index.nginx-debian.html
+
+#configure nginx default page, print hello world!
+echo 'Hello World!' > /var/www/html/index.html-debian.html
+
+#start nginx web server
 service nginx start
