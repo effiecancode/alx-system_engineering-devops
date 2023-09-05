@@ -1,27 +1,43 @@
 #!/usr/bin/env bash
-#installs nginx server
+# Installs HAProxy version 1.8 with the following configurations:
 
-# Update
-apt-get -y update
-apt-get -y upgrade
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-1.8
+apt-get update
+apt-get install -y haproxy
 
-# Install HAProxy
-apt-get -y install haproxy
-cp -a /etc/haproxy/haproxy.cfg{,.orig}
-echo "$balancer" >> /etc/haproxy/haproxy.cfg
-# HAProxy configuration to haproxy.cfg
+#ensure management via init script
+echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
 
-balancer="\
-frontend haproxy_balancer
-    bind *:80
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+
+listen backend
+    bind 0.0.0.0:80
     mode http
-    default_backend webservers
-
-backend webservers
+    stats enable
+    stats uri /haproxy?stats
     balance roundrobin
+    option httpclose
+    option forwardfor
     server 172082-web-01 34.232.72.158:80 check
     server 172082-web-02 34.224.83.81:80 check
-"
+" >> /etc/haproxy/haproxy.cfg
 
-# Start the HAProxy service
-sudo service haproxy start
+service haproxy start
