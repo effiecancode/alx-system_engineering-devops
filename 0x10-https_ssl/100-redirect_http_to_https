@@ -1,0 +1,31 @@
+global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+
+frontend hbnb
+    bind 0.0.0.0:80
+    bind 0.0.0.0:443 ssl crt /etc/ssl/www.effienjoki.tech/www.effienjoki.tech.pem
+    redirect scheme https code 301 if !{ ssl_fc }
+    default_backend hbnb_server
+    stats enable
+    stats uri /haproxy?stats
+
+backend hbnb_server
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    server 172082-web-01 34.232.72.158:80 check
+    server 172082-web-02 34.225.83.81:80 check
