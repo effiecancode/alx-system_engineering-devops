@@ -1,11 +1,10 @@
-sudo apt install ufw
-sudo ufw enable
-sudo ufw status
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw allow 22
-sudo ufw allow 80
-sudo ufw allow 443
-sudo ufw enable
-sudo ufw route allow 8080/tcp to 0.0.0.0 port 80
-sudo ufw reload
+# /etc/ufw/ufw.conf
+#
+
+# Set to yes to start on boot. If setting this remotely, be sure to add a rule
+# to allow your remote connection before starting ufw. Eg: 'ufw allow 22/tcp'
+ENABLED=yes
+
+# Please use the 'ufw' command to set the loglevel. Eg: 'ufw logging medium'.
+# See 'man ufw' for details.
+LOGLEVEL=low
