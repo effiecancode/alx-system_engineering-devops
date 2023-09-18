@@ -1,4 +1,3 @@
-#!/usr/bin/bash
 sudo apt install ufw
 sudo ufw enable
 sudo ufw status
