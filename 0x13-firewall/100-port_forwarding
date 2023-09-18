@@ -1,0 +1,12 @@
+#!/usr/bin/bash
+sudo apt install ufw
+sudo ufw enable
+sudo ufw status
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw enable
+sudo ufw route allow 8080/tcp to 0.0.0.0 port 80
+sudo ufw reload
