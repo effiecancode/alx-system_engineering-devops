@@ -21,13 +21,12 @@ if __name__ == "__main__":
         complete_tasks = 0
         all_tasks = []
 
-        #
         for tasks in todo.json():
             if tasks.get("completed") is True:
                 complete_tasks += 1
-                all_tasks.append(tasks.get("title"))
+                all_tasks.append(tasks.get('title'))
 
         # print the data
-        print("Emloyee {:s} is done with tasks({:d}/{:d}):\n\t {}".
+        print("Employee {:s} is done with tasks({:d}/{:d}):\n\t {}".
               format(names.get('name'), complete_tasks,
                      len(todo.json()), "\n\t".join(all_tasks)))
