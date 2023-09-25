@@ -1,32 +1,42 @@
 #!/usr/bin/python3
-"""Python script using a REST API to return info
+"""Python script Gather data from an API
 """
 import requests
 import sys
 
 
-if __name__ == "__main__":
-    # my url
+def get_employee_todo_progress(employee_id):
+    """
+    function that takes employee_id (must be an int) as parameter
+    and returns employee todos progress
+    """
+
     base_url = "https://jsonplaceholder.typicode.com"
+    user_info_url = f"{base_url}/users/{employee_id}"
+    todos_url = f"{base_url}/todos?userId={employee_id}"
 
-    # set HTTP to retrieve data
-    user_data = requests.get(base_url + "/users", params={"id": sys.argv[1]})
+    user_response = requests.get(user_info_url)
+    todos_response = requests.get(todos_url)
+    if user_response.status_code != 200 or todos_response.status_code != 200:
+        return
 
-    # retrieve a jSON and read from it
-    for names in user_data.json():
-        user_id = names.get("id")
-        todo = requests.get(base_url + "/todos", params={"userid": user_id})
+    user_data = user_response.json()
+    todos_data = todos_response.json()
 
-        # track tasks progress
-        complete_tasks = 0
-        all_tasks = []
+    employee_name = user_data.get("name")
+    total_tasks = len(todos_data)
+    completed_tasks = [task for task in todos_data if task["completed"]]
 
-        for tasks in todo.json():
-            if tasks.get("completed") is True:
-                complete_tasks += 1
-                all_tasks.append(tasks.get('title'))
+    print(f"Employee {employee_id} is done with tasks "
+          f"({len(completed_tasks)}/({total_tasks}):")
 
-        # print the data
-        print("Employee {:s} is done with tasks({:d}/{:d}):\n\t {}".
-              format(names.get('name'), complete_tasks,
-                     len(todo.json()), "\n\t".join(all_tasks)))
+    for task in completed_tasks:
+        print(f"{task['title']}")
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Provide id as command line argument")
+    else:
+        employee_id = int(sys.argv[1])
+        get_employee_todo_progress(employee_id)
