@@ -28,6 +28,6 @@ if __name__ == "__main__":
                 all_tasks.append(tasks.get("title"))
 
         # print the data
-        print("Emloyee {:s} is done with tasks{:d}/{:d}):\n\t {}".
+        print("Emloyee {:s} is done with tasks({:d}/{:d}):\n\t {}".
               format(names.get('name'), complete_tasks,
                      len(todo.json()), "\n\t".join(all_tasks)))
