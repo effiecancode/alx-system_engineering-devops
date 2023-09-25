@@ -6,33 +6,28 @@ import sys
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        sys.exit(1)
-    else:
-        employee_id = int(sys.argv[1])
-
-    # my urls
+    # my url
     base_url = "https://jsonplaceholder.typicode.com"
-    user_info = f"{base_url}/users/{employee_id}"
-    todos_url = f"{base_url}/todos?userid={employee_id}"
 
     # set HTTP to retrieve data
-    user_response = requests.get(user_info)
-    todos_response = requests.get(todos_url)
+    user_data = requests.get(base_url + "/users", params={"id": sys.argv[1]})
 
-    # return retrieved data as JSON /data parsing/
-    user_data = user_response.json()
-    todos_data = todos_response.json()
+    # retrieve a jSON and read from it
+    for names in user_data.json():
+        user_id = names.get("id")
+        todo = requests.get(base_url + "/todos", params={"userid": user_id})
 
-    # fetch from the json
-    employee_name = user_data.get("name")
-    total_tasks = len(todos_data)
-    completed_tasks = [task for task in todos_data if task["completed"]]
+        # track tasks progress
+        complete_tasks = 0
+        all_tasks = []
 
-    # print the retrieved data
-    print(f"Employee {employee_name} is done with tasks "
-          f"({len(completed_tasks)}/{total_tasks}):")
-    # print(f"\t{user_data['name']}")
+        #
+        for tasks in todo.json():
+            if tasks.get("completed") is True:
+                complete_tasks += 1
+                all_tasks.append(tasks.get("title"))
 
-    for task in completed_tasks:
-        print(f"\t {task['title']}")
+        # print the data
+        print("Emloyee {:s} is done with tasks{:d}/{:d}):\n\t {}".
+              format(names.get('name'), complete_tasks,
+                     len(todo.json()), "\n\t".join(all_tasks)))
