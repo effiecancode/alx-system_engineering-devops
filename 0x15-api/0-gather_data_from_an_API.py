@@ -31,4 +31,4 @@ if __name__ == "__main__":
 
     # return list of tasks
     for task in completed_tasks:
-        print(f"\t{task['title']}")
+        print(f"     {task['title']}")
