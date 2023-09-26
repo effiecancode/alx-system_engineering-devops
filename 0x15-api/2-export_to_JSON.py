@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""Returns to-do list from an API to JSON"""
 import json
 import requests
 import sys
@@ -17,4 +17,4 @@ if __name__ == "__main__":
     # write to json
     with open(f"{user_id}.json", "w") as json_file:
         json.dump({user_id: [{"task": task.get("title"), "completed": task.get(
-            "completed"), "username": username} for task in todos]}, jsonfile)
+            "completed"), "username": username} for task in todos]}, json_file)
