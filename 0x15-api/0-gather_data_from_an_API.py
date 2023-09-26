@@ -5,11 +5,8 @@ import requests
 import sys
 
 
-def get_employee_todo_progress(employee_id):
-    """
-    function that takes employee_id (must be an int) as parameter
-    and returns employee todos progress
-    """
+if __name__ == "__main__":
+    employee_id = int(sys.argv[1])
 
     base_url = "https://jsonplaceholder.typicode.com"
     user_info_url = f"{base_url}/users/{employee_id}"
@@ -25,13 +22,8 @@ def get_employee_todo_progress(employee_id):
     total_tasks = len(todos_data)
     completed_tasks = [task for task in todos_data if task["completed"]]
 
-    print(f"Employee {employee_name} is done with tasks "
+    print(f"Employee {employee_name} is done with tasks"
           f"({len(completed_tasks)}/({total_tasks}):")
 
     for task in completed_tasks:
         print(f"{task['title']}")
-
-
-if __name__ == "__main__":
-        employee_id = int(sys.argv[1])
-        get_employee_todo_progress(employee_id)
