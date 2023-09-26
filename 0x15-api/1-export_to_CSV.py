@@ -18,5 +18,5 @@ if __name__ == "__main__":
     with open(f"{user_id}.csv", "w", newline="") as csv_file:
         writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         [writer.writerow(
-            [user_id, username, t.get("completed"), t.get("title")]
-        ) for t in todos]
+            [user_id, username, task.get("completed"), task.get("title")]
+        ) for task in todos]
