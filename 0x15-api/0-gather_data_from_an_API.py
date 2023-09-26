@@ -17,8 +17,6 @@ def get_employee_todo_progress(employee_id):
 
     user_response = requests.get(user_info_url)
     todos_response = requests.get(todos_url)
-    if user_response.status_code != 200 or todos_response.status_code != 200:
-        return
 
     user_data = user_response.json()
     todos_data = todos_response.json()
@@ -27,7 +25,7 @@ def get_employee_todo_progress(employee_id):
     total_tasks = len(todos_data)
     completed_tasks = [task for task in todos_data if task["completed"]]
 
-    print(f"Employee {employee_id} is done with tasks "
+    print(f"Employee {employee_name} is done with tasks "
           f"({len(completed_tasks)}/({total_tasks}):")
 
     for task in completed_tasks:
@@ -35,8 +33,5 @@ def get_employee_todo_progress(employee_id):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-    #     print("Provide id as command line argument")
-    # else:
         employee_id = int(sys.argv[1])
         get_employee_todo_progress(employee_id)
