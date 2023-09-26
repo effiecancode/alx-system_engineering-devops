@@ -10,7 +10,7 @@ if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
 
     # send HTTP request that retrieves data as JSON
-    user_info = requests.get(url + "users/{}".format(user_id)).json()
+    user_info = requests.get(url + f"users/{user_id}").json()
     username = user_info.get("username")
     todos = requests.get(url + "todos", params={"userId": user_id}).json()
 
