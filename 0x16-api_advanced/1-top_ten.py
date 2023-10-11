@@ -20,9 +20,9 @@ def top_ten(subreddit):
 
     url = "https://www.reddit.com/r/{}/hot.json".format(subreddit)
     response = requests.get(url,
-                       headers=headers,
-                       params=params,
-                       allow_redirects=False)
+                            headers=headers,
+                            params=params,
+                            allow_redirects=False)
     if response.status_code != 200:
         print(None)
         return
